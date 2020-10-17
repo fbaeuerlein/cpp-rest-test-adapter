@@ -1,0 +1,8 @@
+endpoint:
+  port: 9080
+
+routes:
+  - my_first_route:
+    type: GET
+    datatype : string
+    target: 

@@ -1,0 +1,8 @@
+build
+html
+Testing
+coverage
+lcov*
+.vscode
+.devcontainer
+pistache_api_client
