@@ -18,12 +18,10 @@ RUN apt-get -y install doxygen plantuml graphviz
 RUN apt-get -y install lcov iwyu curl
 
 # install swagger-codegen
-RUN apt-get -y install openjdk-8-jdk openjdk-8-jre maven
+RUN apt-get -y install maven
+RUN git clone --depth 1 https://github.com/openapitools/openapi-generator
+WORKDIR /openapi-generator
+RUN mvn clean package 
+
 WORKDIR /
-RUN git clone --depth 1 https://github.com/swagger-api/swagger-codegen.git
-WORKDIR /swagger-codegen
-
-# use the right jdk!
-RUN JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ mvn clean package 
-
 RUN apt-get clean

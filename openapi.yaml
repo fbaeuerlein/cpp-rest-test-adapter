@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: Some test api
+  description: 'This is a sample openapi server for manipulating easily stuff via REST calls in C++'
+  version: 1.0.0
+servers:
+- url: http://localhost:9080
+tags:
+- name: switches
+  description: Everything about switches (simple on/off devices)
+
+paths:
+  /switches/{switchId}:
+    get:
+      tags:
+      - pet
+      summary: Find switch by ID
+      description: Returns a single switch
+      operationId: getSwitchById
+      parameters:
+      - name: switchId
+        in: path
+        description: ID of switch to return
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Switch'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Switch'
+        400:
+          description: Invalid ID supplied
+          content: {}
+        404:
+          description: Switch not found
+          content: {}
+      security:
+      - api_key: []
+    post:
+      tags:
+      - pet
+      summary: Updates a switch with form data
+      operationId: updateSwitchFromData
+      parameters:
+      - name: switchId
+        in: path
+        description: ID of switch that needs to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                state:
+                  type: boolean
+                  description: Updated state of the switch
+      responses:
+        405:
+          description: Invalid input
+          content: {}
+components:
+  schemas:
+    Switch:
+      required:
+      - desiredState
+      type: object
+      properties: 
+        desiredState:
+          type: boolean

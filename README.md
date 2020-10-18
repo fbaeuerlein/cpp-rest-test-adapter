@@ -3,17 +3,32 @@
 A simple to use REST adapter to control C++ for integration testing purposes
 
 - [Overview](#overview)
-- [Requirements](#requirements)
-- [Usage](#usage)
-- [Features](#features)
-  - [CMake](#cmake)
-  - [Docker](#docker)
-  - [Devcontainer support](#devcontainer-support)
-  - [Variants](#variants)
-  - [Tasks](#tasks)
-  - [Testing](#testing)
-  - [Documentation](#documentation)
-    - [Live Server](#live-server)
-    - [Doxygen](#doxygen)
+- [Building](#building)
+- [Execution of api-server](#execution-of-api-server)
+- [Some curl commands for testing](#some-curl-commands-for-testing)
 
 ## Overview
+
+This is some small project to evaluate the capabilities of openapi-generator for C++ to create REST testing interfaces for embedded devices.
+Simply i want to be able to set sensor values, switches, etc. remotely with some nice browser based testing frontend.
+
+The frontend has still to be evaluated.
+
+## Building
+
+  mkdir build
+  cd build && cmake .. && make
+
+## Execution of api-server
+
+Simply run api-server. It will open a port at 9080 and serves the definition from openapi.yaml.
+
+## Some curl commands for testing
+
+Set switch state:
+
+  curl -X POST localhost:9080/switches/asdf -d "{ \"desiredState\" : false }"
+
+Server should print:
+
+  asdf: OFF
