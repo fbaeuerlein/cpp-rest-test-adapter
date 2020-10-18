@@ -16,8 +16,8 @@ The frontend has still to be evaluated.
 
 ## Building
 
-  mkdir build
-  cd build && cmake .. && make
+    mkdir build
+    cd build && cmake .. && make
 
 ## Execution of api-server
 
@@ -27,8 +27,8 @@ Simply run api-server. It will open a port at 9080 and serves the definition fro
 
 Set switch state:
 
-  curl -X POST localhost:9080/switches/asdf -d "{ \"desiredState\" : false }"
+    curl -X POST localhost:9080/switches/switch1 -d "{ \"desiredState\" : false }"
 
 Server should print:
 
-  asdf: OFF
+    switch1: OFF
